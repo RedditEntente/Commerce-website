@@ -1,5 +1,5 @@
-import SignInForm from "../sign-in_form/sign-in-form.componet";
-import SignUpForm from "../sign-up-form/sign-up-form.componet";
+import SignInForm from "../../sign-in-form/sign-in-form.componet";
+import SignUpForm from "../../sign-up-form/sign-up-form.componet";
 
 import "./authentication.scss"
 function Authentication(){

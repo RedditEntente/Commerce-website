@@ -2,7 +2,7 @@
 import Home from "./componets/routes/home/home.componet";
 import {Routes, Route } from "react-router-dom";
 import Navigation from "./componets/routes/navigation/navigation.component";
-import Authentication from "./componets/authentication.componet.jsx/authentication";
+import Authentication from "./componets/routes/authentication/authentication";
 
 
 
