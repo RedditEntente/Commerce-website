@@ -5,7 +5,7 @@ import Navigation from "./componets/routes/navigation/navigation.component";
 import Authentication from "./componets/routes/authentication/authentication";
 
 import Shop from "./componets/routes/shop/shop.componet";
-
+import Checkout from "./componets/routes/checkout/checkout.componet";
 
 
 
@@ -15,6 +15,7 @@ const App = () => {
     <Route index element = {<Home/>}/>
     <Route path="shop" element = {<Shop/>}/>
     <Route path="auth" element = {<Authentication/>}/>
+    <Route path="checkout" element = {<Checkout/>}/>
     </Route>
   
     </Routes>

@@ -4,6 +4,8 @@ import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from "../..
 import FormInput from "../form-input/form-input.componet";
 import Button from "../button/button.componet";
 
+import "./sign-in-form.styles.scss"
+
 
 const defaultFormFields = {
     
@@ -64,7 +66,7 @@ const SignInForm = () => {
 
 
     return(
-        <div>
+        <div className="sign-in-container">
             <h2>Allready have an account?</h2>
             <span>Sign in with email and password!</span>
                 <form onSubmit = {handleSubmit} >
