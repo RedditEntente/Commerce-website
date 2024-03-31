@@ -2,7 +2,7 @@ import DirectoryItem from '../directory-item/directory-item.componet';
 
 import './directory.styles.scss';
 
-const Directory = ({ categories }) => {
+function Directory({ categories }) {
   return (
     <div className='directory-container'>
       {categories.map((category) => (
@@ -10,6 +10,6 @@ const Directory = ({ categories }) => {
       ))}
     </div>
   );
-};
+}
 
 export default Directory;

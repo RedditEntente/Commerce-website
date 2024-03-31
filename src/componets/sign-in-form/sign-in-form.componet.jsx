@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 import { signInWithGooglePopup, signInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.componet";
 import Button from "../button/button.componet";
@@ -17,89 +17,92 @@ const defaultFormFields = {
 
 
 
-const SignInForm = () => {
+function SignInForm() {
     const [formFields, setFormFields] = useState(defaultFormFields);
-    const {email , password} = formFields;
-
-    
-    
-    
+    const { email, password } = formFields;
+    const navigate = useNavigate();
 
 
-    function resetFormFields(){
-        setFormFields(defaultFormFields)
+
+
+
+
+    function resetFormFields() {
+        setFormFields(defaultFormFields);
 
     }
-    const handleSubmit = async (event) =>{
+    async function handleSubmit(event) {
         event.preventDefault();
-        try{
+        try {
             const user = await signInAuthUserWithEmailAndPassword(email, password);
-            
+
+
             resetFormFields();
-            
+            navigate("/home")
+
 
         } catch (error) {
-            console.log(error)
-            if(error.code === "auth/invalid-credential"){
-                alert("incorrect password or email")
+            console.log(error);
+            if (error.code === "auth/invalid-credential") {
+                alert("incorrect password or email");
             }
 
         }
-    };
-    
-
-    const signInWithGoogle= async () =>{
-         await signInWithGooglePopup();
-        
-
-    }   
+    }
 
 
-
-    
-
-    const handleChange= (event) =>{
-        const {name ,value} = event.target;
-        setFormFields({...formFields, [name]:value});
-
-    };
+    async function signInWithGoogle() {
+        await signInWithGooglePopup();
 
 
-    return(
+    }
+
+
+
+
+
+    function handleChange(event) {
+        const { name, value } = event.target;
+        setFormFields({ ...formFields, [name]: value });
+
+    }
+
+
+    return (
         <div className="sign-in-container">
             <h2>Allready have an account?</h2>
             <span>Sign in with email and password!</span>
-                <form onSubmit = {handleSubmit} >
-                    
-                        
+            <form onSubmit={handleSubmit}>
 
-                    
-                    
-                    
-                        <FormInput label ="Email" type = "email"  required onChange={handleChange} name="email" value={email}></FormInput>
 
-                    
-                    
-                   
-                        <FormInput label ="Password" type = "password"  required onChange={handleChange} name="password" value={password}></FormInput>
 
-                    
-                    
-                    
-                        
 
-                    <div className="buttons-container">
+
+
+                <FormInput label="Email" type="email" required onChange={handleChange} name="email" value={email}></FormInput>
+
+
+
+
+                <FormInput label="Password" type="password" required onChange={handleChange} name="password" value={password}></FormInput>
+
+
+
+
+
+
+                <div className="buttons-container">
                     <Button type="submit">Sign In</Button>
 
 
-                    <Button type = "button" buttonType={"google"} onClick={signInWithGoogle}>Google Sign In</Button>
-                    </div>
+                    <Button type="button" buttonType={"google"} onClick={signInWithGoogle}>Google Sign In</Button>
+                </div>
 
-                </form>
-            
+            </form>
+
         </div>
     );
-};
+}
 
 
 export default SignInForm
