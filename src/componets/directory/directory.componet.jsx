@@ -1,14 +1,15 @@
-import CatergoryItem from "../catergory-item/catergory-item.componet"
-import "./directory.styles.scss";
-const Directory = ({categories}) => {
-    return(<div className="directory-container">
-    {categories.map((catergory) => (
-      <CatergoryItem key ={catergory.id} catergory = {catergory}/>
-  
+import DirectoryItem from '../directory-item/directory-item.componet';
 
-    ) )}
-      
-      
-    </div>)
-}
-export default Directory
+import './directory.styles.scss';
+
+const Directory = ({ categories }) => {
+  return (
+    <div className='directory-container'>
+      {categories.map((category) => (
+        <DirectoryItem key={category.id} category={category} />
+      ))}
+    </div>
+  );
+};
+
+export default Directory;
