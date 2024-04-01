@@ -46,7 +46,7 @@ function SignUpForm() {
 
             await createUserDocumentFromAuth(user, { displayName });
             resetFormFields();
-            history('/home');
+            history('/shop');
 
         } catch (error) {
             if (error.code === 'auth/email-already-in-use') {

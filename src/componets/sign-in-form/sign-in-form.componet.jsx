@@ -38,7 +38,7 @@ function SignInForm() {
 
 
             resetFormFields();
-            navigate("/home")
+            navigate("/shop")
 
 
         } catch (error) {
