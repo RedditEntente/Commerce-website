@@ -39,90 +39,96 @@ provider.setCustomParameters({
 
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
-export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
+export function signInWithGooglePopup() {
+  return signInWithPopup(auth, provider);
+}
+export function signInWithGoogleRedirect() {
+  return signInWithRedirect(auth, provider);
+}
 
 export const db = getFirestore();
 
-export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+export async function addCollectionAndDocuments(collectionKey, objectsToAdd) {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
-  
-  objectsToAdd.forEach((object)=> {
+
+  objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
 
   await batch.commit();
   console.log("done");
-};
+}
 
-export const getCategoriesAndDocuments = async () =>{
+export async function getCategoriesAndDocuments() {
   const collectionRef = collection(db, "categories");
 
 
   const q = query(collectionRef);
   const querySnapshot = await getDocs(q);
-  const catergoryMap = querySnapshot.docs.reduce((acc, docSnapshot)=>{
-    const { title, items} = docSnapshot.data()
+  const catergoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+    const { title, items } = docSnapshot.data();
     acc[title.toLowerCase()] = items;
-    return acc
+    return acc;
 
 
 
-  },{});
+  }, {});
   return catergoryMap;
 }
 
 
-export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
-  if(!userAuth) return;
+export async function createUserDocumentFromAuth(userAuth, additionalInformation = {}) {
+  if (!userAuth) return;
   const userDocRef = doc(db, "users", userAuth.uid);
 
-  console.log(userDocRef)
+  console.log(userDocRef);
 
   const userSnapshot = await getDoc(userDocRef);
   console.log(userSnapshot);
   console.log(userSnapshot.exists());
 
-  if(!userSnapshot.exists()){
-    const { displayName, email} =  userAuth;
-    const createdAt =  new Date();
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+    const createdAt = new Date();
 
-    try{
-      await setDoc(userDocRef,{
+    try {
+      await setDoc(userDocRef, {
         displayName,
         email,
         createdAt,
-        ...additionalInformation
-,
+        ...additionalInformation,
       });
-    } catch (error){
+    } catch (error) {
       console.log("error creating the user", error.message);
     }
   }
   return userDocRef;
-};
+}
 
 
 
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
-  if(!email || !password) return;
+export async function createAuthUserWithEmailAndPassword(email, password) {
+  if (!email || !password) return;
 
   return await createUserWithEmailAndPassword(auth, email, password);
 
-};
+}
 
 
-export const signInAuthUserWithEmailAndPassword = async (email, password) => {
-  if(!email || !password) return;
+export async function signInAuthUserWithEmailAndPassword(email, password) {
+  if (!email || !password) return;
 
   return await signInWithEmailAndPassword(auth, email, password);
 
-};
+}
 
-export const signOutUser = async () => signOut(auth);
+export async function signOutUser() {
+  return signOut(auth);
+}
 
 
-export const onAuthStateChangedListener = (callback) =>{ 
-onAuthStateChanged(auth, callback);}
+export function onAuthStateChangedListener(callback) {
+  onAuthStateChanged(auth, callback);
+}
