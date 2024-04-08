@@ -3,7 +3,7 @@
 import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
 import "./checkout-item.styles.scss"
-
+import PaymentForm from "../payment-form/payment.form.componet";
 
 function CheckOutItem({cartItem}){
     const { name, quantity, price, imageUrl } = cartItem;
