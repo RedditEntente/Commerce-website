@@ -48,6 +48,8 @@ export function signInWithGoogleRedirect() {
 
 export const db = getFirestore();
 
+
+
 export async function addCollectionAndDocuments(collectionKey, objectsToAdd) {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
