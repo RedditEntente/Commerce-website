@@ -1,4 +1,4 @@
-#Basic E commerce website i used to learn about react and firebase
+# Basic E commerce website i used to learn about react and firebase
 complete with user authentication and dummy products.
 
 
