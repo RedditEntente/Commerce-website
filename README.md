@@ -1,3 +1,8 @@
+# Basic E commerce website i used to learn about react and firebase
+complete with user authentication and dummy products.
+Hosted on Github.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
