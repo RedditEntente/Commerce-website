@@ -1,5 +1,6 @@
 # Basic E commerce website i used to learn about react and firebase
 complete with user authentication and dummy products.
+Hosted on Github.
 
 
 # Getting Started with Create React App
