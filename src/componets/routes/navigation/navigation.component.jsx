@@ -37,7 +37,7 @@ function Navigation() {
 
           {currentUser ? (<NavLink as="span" onClick={signOutUser}>SignOut</NavLink>) : (
             <NavLink to="/auth">
-              Sign In
+              Sign Out
             </NavLink>
           )}
 
